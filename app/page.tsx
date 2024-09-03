@@ -19,7 +19,7 @@ export default function Home() {
   const [isUncPathToLocalPath, setIsUncPathToLocalPath] = useState<boolean>(true);
   const placeholder = isUncPathToLocalPath ? "\\\\localhost\\c$\\my\\path" : "C:\\my\\path";
   const convertedPlaceholder = isUncPathToLocalPath ? "C:\\my\\path" : "\\\\localhost\\c$\\my\\path";
-  const convertedStringPlaceholder = isUncPathToLocalPath ? "\"C:\\my\\path\"" : "\"\\\\localhost\\c$\\my\\path\"";
+  const convertedStringPlaceholder = isUncPathToLocalPath ? "\"C:\\\\my\\\\path\"" : "\"\\\\\\\\localhost\\\\c$\\\\my\\\\path\"";
 
   const handleConvert = (originalPath: string, isUncPathToLocalPath: boolean) => {
     if (!originalPath) {
