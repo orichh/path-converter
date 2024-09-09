@@ -16,12 +16,22 @@ export default function Home() {
   const [convertedStringPath, setConvertedStringPath] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  const [isUncPathToLocalPath, setIsUncPathToLocalPath] = useState<boolean>(true);
-  const placeholder = isUncPathToLocalPath ? "\\\\localhost\\c$\\my\\path" : "C:\\my\\path";
-  const convertedPlaceholder = isUncPathToLocalPath ? "C:\\my\\path" : "\\\\localhost\\c$\\my\\path";
-  const convertedStringPlaceholder = isUncPathToLocalPath ? "\"C:\\\\my\\\\path\"" : "\"\\\\\\\\localhost\\\\c$\\\\my\\\\path\"";
+  const [isUncPathToLocalPath, setIsUncPathToLocalPath] =
+    useState<boolean>(true);
+  const placeholder = isUncPathToLocalPath
+    ? "\\\\localhost\\c$\\my\\path"
+    : "C:\\my\\path";
+  const convertedPlaceholder = isUncPathToLocalPath
+    ? "C:\\my\\path"
+    : "\\\\localhost\\c$\\my\\path";
+  const convertedStringPlaceholder = isUncPathToLocalPath
+    ? '"C:\\\\my\\\\path"'
+    : '"\\\\\\\\localhost\\\\c$\\\\my\\\\path"';
 
-  const handleConvert = (originalPath: string, isUncPathToLocalPath: boolean) => {
+  const handleConvert = (
+    originalPath: string,
+    isUncPathToLocalPath: boolean,
+  ) => {
     if (!originalPath) {
       return;
     }
@@ -40,7 +50,9 @@ export default function Home() {
       setConvertedPath(convertedPath);
       setConvertedStringPath(`\"${convertedStringPath}\"`);
     } catch (err) {
-      setError("Something went wrong. Are you sure your input string is correct?");
+      setError(
+        "Something went wrong. Are you sure your input string is correct?",
+      );
     }
   };
 
@@ -50,9 +62,9 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-      <h1>PATH CONVERTER</h1>
+      <h1 className="text-gray-700">PATH CONVERTER</h1>
 
-      <div className="w-full flex justify-center space-x-5">
+      <div className="w-full flex justify-center space-x-5 text-gray-700">
         <span>{isUncPathToLocalPath ? "Unc Path" : "Local Path"}</span>
         <FontAwesomeIcon
           title={"Swap"}
@@ -84,7 +96,10 @@ export default function Home() {
       </div>
 
       <div className="w-full">
-        <label className="text-gray-700 text-sm font-bold" htmlFor="convertedPath">
+        <label
+          className="text-gray-700 text-sm font-bold"
+          htmlFor="convertedPath"
+        >
           {isUncPathToLocalPath ? "Local Path" : "UNC Path"}
         </label>
         <textarea
@@ -98,7 +113,10 @@ export default function Home() {
           placeholder={convertedPlaceholder}
         />
 
-        <label className="text-gray-700 text-sm font-bold" htmlFor="convertedStringPath">
+        <label
+          className="text-gray-700 text-sm font-bold"
+          htmlFor="convertedStringPath"
+        >
           {isUncPathToLocalPath ? "Local String Path" : "UNC String Path"}
         </label>
         <textarea
